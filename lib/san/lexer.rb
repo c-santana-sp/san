@@ -1,6 +1,5 @@
 module San
   class Lexer
-
     attr_reader :source, :tokens
 
     def initialize(source)
@@ -18,10 +17,10 @@ module San
     end
 
     private
-      attr_accessor :line, :next_p, :lexeme_start_p
+
+    attr_accessor :line, :next_p, :lexeme_start_p
 
     def tokenize
     end
-
   end
 end
