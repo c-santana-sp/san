@@ -1,0 +1,26 @@
+#variable declaration
+x = 1
+
+#function declaration
+fn sum_integers: first_integer, last_integer
+  i = first_integer
+  sum = 0
+  while i <= last_integer
+    sum = sum + i
+
+    i = i + 1
+  end
+
+  println(sum)
+end
+
+#function call
+sum_integers(1, 100)
+
+#if conditional
+num = -2
+if num > 0
+  println("The number is greater than zero.")
+else
+  println("The number is less than or equal to zero.")
+end
