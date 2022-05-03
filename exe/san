@@ -1,3 +1,10 @@
 #!/usr/bin/env ruby
 
-require "san"
+require_relative "../lib/san"
+
+path = ARGV[0]
+source = File.read(path)
+lexer = San::Lexer.new(source)
+tokens = lexer.start_tokenization
+
+p tokens
