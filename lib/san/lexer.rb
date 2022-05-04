@@ -16,7 +16,9 @@ module San
     end
 
     def start_tokenization
-      tokenize()
+      while source_uncompleted?
+        tokenize()
+      end
 
       tokens
     end
@@ -26,6 +28,27 @@ module San
     attr_accessor :line, :next_p, :lexeme_start_p
 
     def tokenize
+    end
+
+    def consume
+      c = lookahead()
+      @next_p += 1
+      c
+    end
+
+    def lookahead(offset = 1)
+      lookahead_p = (@next_p - 1) + offset
+      return "\0" if lookahead_p >= source.length
+
+      source[lookahead_p]
+    end
+
+    def source_completed?
+      @next_p >= self.source.length
+    end
+
+    def source_uncompleted?
+      !source_completed?
     end
   end
 end
