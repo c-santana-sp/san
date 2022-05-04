@@ -43,6 +43,12 @@ module San
       source[lookahead_p]
     end
 
+    def ignore_comment_line
+      while lookahead() != "\n" && source_uncompleted?
+        consume()
+      end
+    end
+
     def source_completed?
       @next_p >= self.source.length
     end
