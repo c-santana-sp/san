@@ -1,5 +1,10 @@
 module San
   class Lexer
+    WHITESPACE = [' ', "\r", "\t"].freeze
+    ONE_CHAR_LEX = ['(', ')', ':', ',', '.', '-', '+', '/', '*'].freeze
+    ONE_OR_TWO_CHAR_LEX = ['!', '=', '>', '<'].freeze
+    KEYWORD = ['and', 'else', 'end', 'false', 'var', 'fun', 'if', 'nil', 'or', 'return', 'true', 'while'].freeze
+
     attr_reader :source, :tokens
 
     def initialize(source)
