@@ -28,6 +28,30 @@ module San
     attr_accessor :line, :next_p, :lexeme_start_p
 
     def tokenize
+      # puts "source.length: #{@source.length}"
+      puts "lexeme_start_p: #{@lexeme_start_p}"
+      puts "next_p: #{@next_p}"
+
+      self.lexeme_start_p = next_p
+      token = nil
+
+      c = consume()
+
+      return if WHITESPACE.include?(c)
+      return ignore_comment_line() if c == "#"
+
+      if c == "\n"
+        @line += 1
+        tokens << token_from_one_char(c) if tokens.last&.type != :"\n"
+
+        return
+      end
+
+      if token
+        self.tokens << token
+      else
+        raise("Unknown character \"#{c}\"")
+      end
     end
 
     def consume
@@ -41,6 +65,14 @@ module San
       return "\0" if lookahead_p >= source.length
 
       source[lookahead_p]
+    end
+
+    def token_from_one_char(key)
+      key
+    end
+
+    def token_from_one_or_two_char(key)
+      key
     end
 
     def ignore_comment_line
