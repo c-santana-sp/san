@@ -148,7 +148,7 @@ module San
           :identifier
         end
 
-      puts type
+      # p type
 
       Token.new(type, identifier, nil, current_location())
     end
